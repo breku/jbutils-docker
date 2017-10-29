@@ -9,3 +9,5 @@ RUN apt-get install -y nano
 
 
 COPY image/ /
+
+RUN chown postgres:postgres /postgres-config/*
