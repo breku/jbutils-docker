@@ -2,21 +2,32 @@ version: '3'
 
 
 services:
+
   lan:
     build:
       ../lan/
     container_name: jb-lan
     ports:
       - 8080:8080
-      - 80:80
     volumes:
       - ${WAR_DIRECTORY}/jbutils.war:/usr/local/tomcat/webapps/jbutils.war
       - ${WAR_DIRECTORY2}/jbcity-courses.war:/usr/local/tomcat/webapps/jbcity-courses.war
     depends_on:
       - db
+
+
   db:
     build:
       ../db/
     container_name: jb-database
     ports:
       - 5432:5432
+
+  web:
+    build:
+      ../web/
+    container_name: jb-web
+    ports:
+      - 80:80
+    depends_on:
+      - lan
