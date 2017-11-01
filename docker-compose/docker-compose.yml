@@ -20,6 +20,8 @@ services:
     build:
       ../db/
     container_name: jb-database
+    volumes:
+      - ${POSTGRES_DATA}:/var/lib/postgresql/data
     ports:
       - 5432:5432
 
